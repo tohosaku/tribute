@@ -68,6 +68,7 @@ class TributeEvents<T extends {}> {
   }
 
   input(event: Event) {
+    console.log(`input event fired!`);
     const _element = event.currentTarget;
     this.inputEvent = true;
     this.keyup(event);
@@ -261,12 +262,12 @@ class CompositionFilter {
   }
 
   compositionstart(_event: Event) {
-    // console.log(`composition start: ${this.isComposing}`);
+    console.log(`composition start. isComposing: ${this.isComposing}`);
     this.isComposing = true;
   }
 
   compositionend(event: Event) {
-    // console.log(`composition end: ${this.isComposing}`);
+    console.log(`composition end. isComposing: ${this.isComposing}`);
     if (event instanceof CompositionEvent && this.isComposing) {
       this.isComposing = false;
       if (!this.isFirefox) {
@@ -282,7 +283,7 @@ class CompositionFilter {
   }
 
   keydown(event: Event) {
-    // console.log(`keydown: ${this.isComposing}`);
+    console.log(`keydown. isComposing: ${this.isComposing}`);
     if (!(event instanceof KeyboardEvent)) return;
 
     if (this.isComposing && event.code === 'Enter') {
@@ -291,7 +292,7 @@ class CompositionFilter {
   }
 
   input(event: Event) {
-    // console.log(`input: ${this.isComposing}`);
+    console.log(`input. isCompsing: ${this.isComposing}`);
     if (!(event instanceof InputEvent)) return;
 
     if (event.inputType === 'insertFromComposition') {
